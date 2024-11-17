@@ -8,8 +8,10 @@ export class CartDetails{
     @PrimaryColumn({type: "bigint"})
     cartid: number;
 
-    @PrimaryColumn({type: "bigint"})
+    @PrimaryColumn({type: "bigint", unique: false})
     prodId: number;
+    // @Column({type: "bigint", nullable: true})
+    // prodId: number;
 
     @Column({type: "bigint"})
     amount: number;
@@ -19,8 +21,8 @@ export class CartDetails{
 
 
     @ManyToOne(()=> Order, (order)=> order.cartdetails)
-    order: Order[]  //My interpretation == In order entity an array of cartdetails will be created
-    user: any;
+    order: Order  //My interpretation == In order entity an array of cartdetails will be created
+    // user: any;
 
     // @OneToOne(()=>User, (user)=> user.cart)
     // @JoinColumn({name: "userId"})

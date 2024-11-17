@@ -1,6 +1,6 @@
 export class CreateCartDto {
 
-    userId: number
+    // userId: number
     prodId: number; 
     quantity: number;
 }

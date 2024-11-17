@@ -7,6 +7,7 @@ import { Order } from "../entities/order.entity";
 import { Product } from "../entities/product.entity";
 import { User } from "../entities/user.entity";
 import Category from "../entities/category.entity";
+import { join } from "path";
 
 
 export default class TypeOrmConfig{
@@ -23,6 +24,20 @@ export default class TypeOrmConfig{
             entities: [Cart, CartDetails, Category, Order, Product, User],
             synchronize: true,
             logging: true
+
+            // type: "postgres",
+            //         host: configservice.get("DB_HOST"),
+            //         port: +configservice.get("DB_PORT"),
+            //         username:configservice.get("DB_USERNAME"),
+            //         // password: configservice.get("DB_PASSWORD"),
+            //         database:configservice.get("DB_NAME"),
+            //         entities: [join(process.cwd(), 'dist/**/*.entity.js')],
+            //         synchronize: true,
+            //         logging: true
+        
+
+
+
         }
     }
 }

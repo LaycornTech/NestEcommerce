@@ -20,5 +20,5 @@ export class Order {
     isDelivered: isDelivered;
 
     @OneToMany(()=> CartDetails, (cartdetails)=> cartdetails.order)
-    cartdetails: CartDetails;
+    cartdetails: CartDetails[];
 }

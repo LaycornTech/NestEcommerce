@@ -19,8 +19,13 @@ export class CartController {
 
   // Add to cart, reduce the qty in stock wrt qty demanded for
   @Post("")
-  addToCart(@Body() createCartDto: CreateCartDto) {
-    return this.cartService.addToCart(createCartDto);
+  @UseGuards(IsAuthGuard)
+  addToCart(@Body() createCartDto: CreateCartDto, @GetAuthToken() payload: AuthenticationId) {
+    return this.cartService.addToCart(createCartDto, payload.user.id);
+  }
+  @Get("det")
+  cartDetails(@GetAuthToken() payload: AuthenticationId){
+    return this.cartService.cartDetails(payload.user.id)
   }
   //  Get all the Products Available in Stock
   @Get()
@@ -32,7 +37,7 @@ export class CartController {
   }
 
   @Get("ord")
-  OrderOfGoods(@Query('userId') userId: string){
-    return this.cartService.OrderOfGoods(Number(userId))
+  OrderOfGoods(@GetAuthToken() payload: AuthenticationId){
+    return this.cartService.OrderOfGoods(payload.user.id)
   }
 }

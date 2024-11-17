@@ -13,8 +13,7 @@ export class ExtractTokenMiddleware implements NestMiddleware{
             if(authTokenString.length > 0){
                 const extractedToken = authTokenString.split(' ')[1];
                 if(extractedToken !== undefined){
-                    const authpayload = await 
-                    this.sharedservice.verifyJwt(authTokenString) as unknown as AuthenticationId;
+                    const authpayload = await this.sharedservice.verifyJwt(extractedToken) as unknown as AuthenticationId;
                     if(authpayload){
                         if ('user' in authpayload && 'id' in authpayload.user){
                             req.authenticationId = authpayload

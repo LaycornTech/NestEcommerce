@@ -27,17 +27,14 @@ async signup(signup: UserSignUpDto){
     newIntake.confirm = signup.confirm
 
     const saltRound = 10;
-    const hashedPass = await bcrypt.hash(signup.password,saltRound)
-    newIntake.password = hashedPass
+    
     if(signup.password !== signup.confirm){
         throw new HttpException("Password don't Match", HttpStatus.BAD_REQUEST)
     }
-    
+    const hashedPass = await bcrypt.hash(signup.password,saltRound)
+    newIntake.password = hashedPass
 
-    // newIntake.password = undefined
-    // newIntake.confirm = undefined
-    // user.push(newIntake)
-    // return 'User was created successfully';
+    newIntake.confirm = hashedPass
 
      await this.entityManager.save(newIntake)
 }

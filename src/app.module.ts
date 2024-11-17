@@ -40,17 +40,17 @@ import { UserController } from './user/user.controller';
     //   })
     // }) 
     TypeOrmModule.forRootAsync(cartormAsync),
-    TypeOrmModule.forRoot({
-      type: "postgres",
-            host: "localhost",
-            port: 5432,
-            username: "postgres",
-            password: "12345",
-            database:"carts",
-            entities: [Cart, CartDetails, Category, Order, Product, User],
-            synchronize: true,
-            logging: true
-    })
+  //   TypeOrmModule.forRoot({
+  //     type: "postgres",
+  //           host: "localhost",
+  //           port: 5432,
+  //           username: "postgres",
+  //           password: "12345",
+  //           database:"carts",
+  //           entities: [Cart, CartDetails, Category, Order, Product, User],
+  //           synchronize: true,
+  //           logging: true
+  //   })
   ],
   controllers: [AppController, 
     UserController
@@ -61,7 +61,8 @@ import { UserController } from './user/user.controller';
 })
 export class AppModule implements NestModule{
   configure(consumer: MiddlewareConsumer) {
-      consumer.apply(ExtractTokenMiddleware).exclude("/user/*").forRoutes("*");
+      consumer.apply(ExtractTokenMiddleware).forRoutes("*");
+      // .exclude("/user/*")
   }
 }
 // export class AppModule{}
